@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MOEX charts</title>
+    <link rel="stylesheet" href="css/workplace.css?v=X" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue@2"></script> -->
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <header id="header" class="header clr">
+      </header>
+      <main id="main" class="main clr">
+        <div class="page visible">
+          <h3>Демонстрация Rust + WebAssembly + WebGL + Vue.js + API MOEX, графики биржевых торгов</h3>
+          <div class="leftbar full">
+            <div class="listspace">
+              <div class="scrollablelist leftside">
+                <div class="lthead">
+                  <span></span>
+                </div>
+                <ul class="list withrecord">
+                  <li v-bind:class="{activeitem: issuer.ticker == activeticker}" v-for="issuer in issuers" v-bind::key="issuer.ticker" v-on:click="showChart(issuer.ticker)">
+                    <span class="name">{{issuer.name}} ({{issuer.ticker}})</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div id="recrd" class="record">
+              <canvas id="chart" class="chart" ></canvas>
+              <!-- <canvas id="axe"></canvas> -->
+            </div>
+            <div>
+              <button v-on:click="shiftChart(false)">Сдвинуть влево</button>
+              <button v-on:click="shiftChart(true)">Сдвинуть вправо</button>
+            </div>
+        </div>
+        </div>
+      </main>
+      <footer class="footer">
+      </footer>
+    </div>
+
+    <script src="./bootstrap.js"></script>
+
+  </body>
+</html>
